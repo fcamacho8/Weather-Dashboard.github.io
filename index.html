@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-4">Weather Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            
+            <div class="input-group mb-3 col-sm-3">
+                <input type="text" id="city-input" class="form-control" placeholder="City,State" aria-label="Recipient's username"
+                    aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="search-city" style="background-color: steelblue;color: whitesmoke;">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        // var APIkey = "9fd3885f2225df290a83c239a4d8a062";
+        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?" + "q=Tucson,Arizona&appid=" + APIkey;
+
+    $("#search-city").on("click", function (event) {
+        event.preventDefault();
+
+        var APIkey = "9fd3885f2225df290a83c239a4d8a062";
+        var nameOfCity = $("city-input").val();
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&appid=" + APIkey;
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(JSON.stringify(response));
+        })
+
+    })
+    
+    
+    </script>
+
+     
+</body>
+</html>
