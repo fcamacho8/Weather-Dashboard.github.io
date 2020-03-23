@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
@@ -14,13 +16,53 @@
     </div>
     <div class="container">
         <div class="row">
-            
-            <div class="input-group mb-3 col-sm-3">
-                <input type="text" id="city-input" class="form-control" placeholder="City,State" aria-label="Recipient's username"
-                    aria-describedby="button-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="search-city" style="background-color: steelblue;color: whitesmoke;">Search</button>
+            <div class="input-group mb-3 col-sm-3" id="col-1">
+
+                <div>
+                    <input type="text" id="city-input" class="form-control" placeholder="Type the City"
+                        aria-label="Recipient's username" aria-describedby="button-addon2"><br>
+
+                    <button class="btn btn-outline-secondary" type="button" id="search-city"
+                        style="background-color: steelblue;color: whitesmoke;">Search</button>
+                
+
+               <div id="citybox" style="list-style-type:none;">
+                    
+               </div>
+            </div>
+
+            </div>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-12" id="cityInfo">
+                        <h2 class="city">City</h2>
+                        <p class="temp">Temperature:</p>
+                        <p class="humid">Humidity:</p>
+                        <p class="wind">Wind Speed:</p>
+                        <p class="UV">UV:</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-2">
+
+                        </div>
+
+                    </div>
+
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -28,28 +70,52 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
 
-        // var APIkey = "9fd3885f2225df290a83c239a4d8a062";
-        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?" + "q=Tucson,Arizona&appid=" + APIkey;
 
-    $("#search-city").on("click", function (event) {
-        event.preventDefault();
+        $("#search-city").on("click", function (event) {
+            event.preventDefault();
 
-        var APIkey = "9fd3885f2225df290a83c239a4d8a062";
-        var nameOfCity = $("city-input").val();
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&appid=" + APIkey;
+            var APIkey = "9fd3885f2225df290a83c239a4d8a062";
+            var nameOfCity = $("#city-input").val();
+            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&appid=" + APIkey;
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            console.log(JSON.stringify(response));
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+
+                var tempFar = (response.main.temp - 273.15) * 1.80 + 32;
+
+                $(".city").text(response.name);
+                $(".temp").text("Temperature: " + tempFar.toFixed() + "F");
+                $(".humid").text("Humidity: " + response.main.humidity + "%");
+                $(".wind").text("Wind Speed: " + response.wind.speed + "mph");
+
+                $("#citybox").append("<br><hr>" + nameOfCity);
+
+
+            })
+
         })
 
-    })
-    
-    
+        // function addListCity() {
+        //     var nameOfCity;
+        //     var cityList = document.getElementById("#cityboxlist"),
+        //         liNode = document.getElement("LI"),
+        //         textNode = document.createTextNode(nameOfCity);
+
+        //     liNode.appendChild(textNode);
+        //     cityList.appendChild(liNode);
+
+
+        // }
+
+
+
+
     </script>
 
-     
+
 </body>
+
 </html>
