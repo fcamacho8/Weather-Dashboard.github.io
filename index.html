@@ -13,6 +13,8 @@
 <body>
     <div class="jumbotron">
         <h1 class="display-4">Weather Dashboard</h1>
+        <h2 id="currentDay"></h2>
+
     </div>
     <div class="container">
         <div class="row">
@@ -24,12 +26,12 @@
 
                     <button class="btn btn-outline-secondary" type="button" id="search-city"
                         style="background-color: steelblue;color: whitesmoke;">Search</button>
-                
 
-               <div id="citybox" style="list-style-type:none;">
-                    
-               </div>
-            </div>
+
+                    <div id="citybox" style="list-style-type:none;">
+
+                    </div>
+                </div>
 
             </div>
             <div class="col-sm-9">
@@ -68,8 +70,11 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script type="text/javascript">
 
+        var currentDay = moment().format('MMMM Do YYYY');
+        $("#currentDay").text(currentDay);
 
         $("#search-city").on("click", function (event) {
             event.preventDefault();
