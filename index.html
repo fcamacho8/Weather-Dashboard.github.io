@@ -13,7 +13,7 @@
 <body>
     <div class="jumbotron">
         <h1 class="display-4">Weather Dashboard</h1>
-        <h2 id="currentDay"></h2>
+        <h2 class="currentDay"></h2>
 
     </div>
     <div class="container">
@@ -37,72 +37,125 @@
             <div class="col-sm-9">
                 <div class="row">
                     <div class="col-sm-12" id="cityInfo">
-                        <h2 class="city">City</h2>
+                        <h3 class="city">City</h3>
                         <p class="temp">Temperature:</p>
                         <p class="humid">Humidity:</p>
                         <p class="wind">Wind Speed:</p>
                         <p class="UV">UV:</p>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-2">
+                    <div id="forecast" class="row">
+                        <div class="col-md-2 day">
+                            <h3 class="currentDay">Date</h3>
+                            <div class="icon">
+                                <img
+                                    src="https://www.kindpng.com/zpicc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
+                                <p class="temp">Temperature:</p>
+                                <p class="humid">Humidity:</p>
 
+                            </div>
                         </div>
-                        <div class="col-sm-2">
 
+                        <div class="col-md-2 day">
+                            <h3 class="secondDay">Date</h3>
+                            <div class="icon">
+                                <img
+                                    src="https://www.kindpng.com/picc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
+                                <p class="temp">Temperature:</p>
+                                <p class="humid">Humidity:</p>
+                            </div>
                         </div>
-                        <div class="col-sm-2">
-
+                        <div class="col-md-2 day">
+                            <h3 class="thirdDay">Date</h3>
+                            <div class="icon">
+                                <img
+                                    src="https://www.kindpng.com/picc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
+                                <p class="temp">Temperature:</p>
+                                <p class="humid">Humidity:</p>
+                            </div>
                         </div>
-                        <div class="col-sm-2">
-
+                        <div class="col-md-2 day">
+                            <h3 class="fourthDay">Date</h3>
+                            <div class="icon">
+                                <img
+                                    src="https://www.kindpng.com/picc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
+                                <p class="temp">Temperature:</p>
+                                <p class="humid">Humidity:</p>
+                            </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-md-2 day">
+                            <h3 class="fifthDay">Date</h3>
+                            <div class="icon">
+                                <img
+                                    src="https://www.kindpng.com/picc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
+                                <p class="temp">Temperature:</p>
+                                <p class="humid">Humidity:</p>
+                            </div>
 
                         </div>
 
                     </div>
 
+
                 </div>
-
-
             </div>
         </div>
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script type="text/javascript">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var currentDay = moment().format('MMMM Do YYYY');
+                $(".currentDay").text(currentDay);
+                var secondDay = moment(new Date()).add(1,'days').format('MMMM Do YYYY');
+                $(".secondDay").text(secondDay);
+                var thirdDay = moment(new Date()).add(2,'days').format('MMMM Do YYYY');
+                $(".thirdDay").text(thirdDay);
+                var fourthDay = moment(new Date()).add(3,'days').format('MMMM Do YYYY');
+                $(".fourthDay").text(fourthDay);
+                var fifthDay = moment(new Date()).add(4,'days').format('MMMM Do YYYY');
+                $(".fifthDay").text(fifthDay);
 
-        var currentDay = moment().format('MMMM Do YYYY');
-        $("#currentDay").text(currentDay);
+                
 
-        $("#search-city").on("click", function (event) {
-            event.preventDefault();
+                $("#search-city").on("click", function (event) {
 
-            var APIkey = "9fd3885f2225df290a83c239a4d8a062";
-            var nameOfCity = $("#city-input").val();
-            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&appid=" + APIkey;
+                    event.preventDefault();
 
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function (response) {
-                console.log(response);
+                    var APIkey = "9fd3885f2225df290a83c239a4d8a062";
+                    var nameOfCity = $("#city-input").val();
+                    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + nameOfCity + "&appid=" + APIkey;
 
-                var tempFar = (response.main.temp - 273.15) * 1.80 + 32;
+                    $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                    }).then(function (response) {
+                        console.log(response);
 
-                $(".city").text(response.name);
-                $(".temp").text("Temperature: " + tempFar.toFixed() + "F");
-                $(".humid").text("Humidity: " + response.main.humidity + "%");
-                $(".wind").text("Wind Speed: " + response.wind.speed + "mph");
+                        var tempFar = (response.main.temp - 273.15) * 1.80 + 32;
 
-                $("#citybox").append("<br><hr>" + nameOfCity);
+                        $(".city").text(response.name);
+                        $(".temp").text("Temperature: " + tempFar.toFixed() + "F");
+                        $(".humid").text("Humidity: " + response.main.humidity + "%");
+                        $(".wind").text("Wind Speed: " + response.wind.speed + "mph");
+
+                        $("#citybox").append("<br><hr>" + nameOfCity);
 
 
-            })
+                        // $(".col-sm-2").text(currentDay);
+                        // var card = $("<div>").addClass("card bg-primary text-white");
+                        // var body = $("<div>").addClass("card-body p-2");
 
-        })
+                        // var title = $("<h5>").addClass("card-title").text(new Date(data.list[i].dt_txt).toLocaleDateString());
+                        // col.append(card.append(body));
 
+                        // $("#forcast .row").append(col);
+
+                    })
+
+                })
+
+
+            });
         // function addListCity() {
         //     var nameOfCity;
         //     var cityList = document.getElementById("#cityboxlist"),
@@ -118,7 +171,7 @@
 
 
 
-    </script>
+        </script>
 
 
 </body>
