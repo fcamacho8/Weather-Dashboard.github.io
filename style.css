@@ -7,24 +7,38 @@
     border-bottom: 5px solid rgb(17, 17, 17); 
 }
 
-/* #col-1{
-    height: 500px;
-    background-color:whitesmoke;
-
-} */
 
 h2{
     
     background-color:grey;  
     padding: 8px;
     border: 2px solid black;
-    
- 
-
 
 }
 
 img{
     width: 20px;
     height: 30px;
+}
+
+#groupBox{
+    background-color:rgb(236, 236, 236);
+    padding: 20px;
+    border: 1px solid rgb(76, 100, 145);
+    border-radius: 10px;
+}
+
+#cityInfo {
+    padding-left: 5px;
+    background-color:rgb(236, 236, 236);
+    border: 1px solid rgb(76, 100, 145);
+    border-radius: 10px;
+    font-family: monospace;
+    color:rgb(34, 72, 107) ;
+}
+
+#forecast{
+    padding-top: 20px;
+    font-family: monospace; 
+    color:rgb(34, 72, 107) ;
 }
