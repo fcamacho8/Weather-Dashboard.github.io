@@ -41,14 +41,13 @@
                         <p class="temp">Temperature:</p>
                         <p class="humid">Humidity:</p>
                         <p class="wind">Wind Speed:</p>
-                        <p class="UV">UV:</p>
                     </div>
                     <div id="forecast" class="row">
                         <div class="col-md-2 day">
                             <h3 class="currentDay">Date</h3>
                             <div class="icon">
                                 <img
-                                    src="https://www.kindpng.com/zpicc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
+                                    src="https://www.kindpng.com/picc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
                                 <p class="temp">Temperature:</p>
                                 <p class="humid">Humidity:</p>
 
@@ -60,8 +59,8 @@
                             <div class="icon">
                                 <img
                                     src="https://www.kindpng.com/picc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
-                                <p class="temp">Temperature:</p>
-                                <p class="humid">Humidity:</p>
+                                <p id="temp2">Temperature:</p>
+                                <p id="humid2">Humidity:</p>
                             </div>
                         </div>
                         <div class="col-md-2 day">
@@ -69,8 +68,8 @@
                             <div class="icon">
                                 <img
                                     src="https://www.kindpng.com/picc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
-                                <p class="temp">Temperature:</p>
-                                <p class="humid">Humidity:</p>
+                                <p id="temp3">Temperature:</p>
+                                <p id="humid3">Humidity:</p>
                             </div>
                         </div>
                         <div class="col-md-2 day">
@@ -78,8 +77,8 @@
                             <div class="icon">
                                 <img
                                     src="https://www.kindpng.com/picc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
-                                <p class="temp">Temperature:</p>
-                                <p class="humid">Humidity:</p>
+                                <p id="temp4">Temperature:</p>
+                                <p id="humid4">Humidity:</p>
                             </div>
                         </div>
                         <div class="col-md-2 day">
@@ -87,8 +86,8 @@
                             <div class="icon">
                                 <img
                                     src="https://www.kindpng.com/picc/m/185-1854115_transparent-cloudy-clipart-weather-icon-black-and-white.png">
-                                <p class="temp">Temperature:</p>
-                                <p class="humid">Humidity:</p>
+                                <p id="temp5">Temperature:</p>
+                                <p id="humid5">Humidity:</p>
                             </div>
 
                         </div>
@@ -106,16 +105,14 @@
             $(document).ready(function () {
                 var currentDay = moment().format('MMMM Do YYYY');
                 $(".currentDay").text(currentDay);
-                var secondDay = moment(new Date()).add(1,'days').format('MMMM Do YYYY');
+                var secondDay = moment(new Date()).add(1, 'days').format('MMMM Do YYYY');
                 $(".secondDay").text(secondDay);
-                var thirdDay = moment(new Date()).add(2,'days').format('MMMM Do YYYY');
+                var thirdDay = moment(new Date()).add(2, 'days').format('MMMM Do YYYY');
                 $(".thirdDay").text(thirdDay);
-                var fourthDay = moment(new Date()).add(3,'days').format('MMMM Do YYYY');
+                var fourthDay = moment(new Date()).add(3, 'days').format('MMMM Do YYYY');
                 $(".fourthDay").text(fourthDay);
-                var fifthDay = moment(new Date()).add(4,'days').format('MMMM Do YYYY');
+                var fifthDay = moment(new Date()).add(4, 'days').format('MMMM Do YYYY');
                 $(".fifthDay").text(fifthDay);
-
-                
 
                 $("#search-city").on("click", function (event) {
 
@@ -140,15 +137,10 @@
 
                         $("#citybox").append("<br><hr>" + nameOfCity);
 
+                        localStorage.setItem("City", JSON.stringify(nameOfCity));
+                        console.log(localStorage.City);
 
-                        // $(".col-sm-2").text(currentDay);
-                        // var card = $("<div>").addClass("card bg-primary text-white");
-                        // var body = $("<div>").addClass("card-body p-2");
 
-                        // var title = $("<h5>").addClass("card-title").text(new Date(data.list[i].dt_txt).toLocaleDateString());
-                        // col.append(card.append(body));
-
-                        // $("#forcast .row").append(col);
 
                     })
 
@@ -156,17 +148,6 @@
 
 
             });
-        // function addListCity() {
-        //     var nameOfCity;
-        //     var cityList = document.getElementById("#cityboxlist"),
-        //         liNode = document.getElement("LI"),
-        //         textNode = document.createTextNode(nameOfCity);
-
-        //     liNode.appendChild(textNode);
-        //     cityList.appendChild(liNode);
-
-
-        // }
 
 
 
